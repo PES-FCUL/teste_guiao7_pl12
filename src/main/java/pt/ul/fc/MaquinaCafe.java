@@ -11,19 +11,19 @@ public class MaquinaCafe {
     public MaquinaCafe() {}
 
     /** Descalcifica a máquina (continua desligada). */
-    @StateRefinement(from="true", to="true")
+    @StateRefinement(from="desligada()", to="desligada()")
     public void descalcificar() {}
 
     /** Recolhe a chávena; a máquina fica pronta. */
-    @StateRefinement(from="true", to="true")
+    @StateRefinement(from="aFazerCafe()", to="pronta()")
     public void recolher() {}
 
     /** Desliga a máquina (cancela o café, se houver). */
-    @StateRefinement(from="true", to="true")
+    @StateRefinement(from="pronta() || aFazerCafe()", to="desligada()")
     public void desligar() {}
 
     /** Começa a fazer um café. */
-    @StateRefinement(from="true", to="true")
+    @StateRefinement(from="pronta()", to="aFazerCafe()")
     public void fazerCafe() {}
 
     /** Liga a máquina. */
